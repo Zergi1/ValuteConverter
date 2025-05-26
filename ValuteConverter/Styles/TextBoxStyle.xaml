@@ -3,5 +3,6 @@
     <Style TargetType="TextBox">
         <Setter Property="FontSize" Value="100"/>
         <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
     </Style>
 </ResourceDictionary>

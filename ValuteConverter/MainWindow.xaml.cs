@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ValuteConverter.AppData;
 
 namespace ValuteConverter
 {
@@ -20,9 +9,44 @@ namespace ValuteConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private CourseService _courseService;
         public MainWindow()
         {
             InitializeComponent();
+            _courseService = new CourseService(SellValuteCmb, BuyValuteCbm, SellAmountTb, BuyAmountTb, SellRatioTbl, BuyRatioTbl, UpdateDateTbl);
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _courseService.LoadCource();
+        }
+
+        private void SellAmountTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_courseService != null)
+            {
+                _courseService.ConvertValute();
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SellValuteCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_courseService != null) { _courseService.ConvertValute(); }
+        }
+
+        private void BuyValuteCbm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_courseService != null) { _courseService.ConvertValute(); }
+        }
+
+        private void BuyAmountTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_courseService != null) { _courseService.ConvertValute(); }
         }
     }
 }

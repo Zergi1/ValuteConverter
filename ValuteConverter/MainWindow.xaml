@@ -25,7 +25,7 @@
         <!--region textblock-->
         <TextBlock Text="У меня есть"   Grid.Column="0" Grid.Row="0"/>
         <TextBlock Text="Хочу приобрести"   Grid.Column="2" Grid.Row="0"/>
-        <TextBlock Text="Данные за 2025-04-21 17:17:44" VerticalAlignment="Bottom" TextAlignment="Right" Grid.Column="2" Grid.Row="5"/>
+        <TextBlock Name="UpdateDateTbl" Text="Данные за 2025-04-21 17:17:44" VerticalAlignment="Bottom" TextAlignment="Right" Grid.Column="2" Grid.Row="5"/>
         <!--endregion-->
 
         <!--region Border с TextBlock-->
@@ -35,9 +35,12 @@
                     <RowDefinition Height="250"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="0" Text="1000" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Text="1 RUB = 0.0123 USDT"  VerticalAlignment="Center"/>
+
+                <TextBox Name="SellAmountTb" TextChanged="SellAmountTb_TextChanged"  Grid.Row="0" Text="1000" VerticalAlignment="Center"/>
+                <TextBlock Name="SellRatioTbl" Grid.Row="1" Text="1 RUB = 0.0123 USDT"  VerticalAlignment="Center"/>
+                
             </Grid> 
+            
         </Border>
 
         <Border Padding="15" BorderBrush="Black" BorderThickness="2" Grid.Row="4" Grid.Column="2">
@@ -46,19 +49,19 @@
                     <RowDefinition Height="250"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Row="0" Text="12.32"  VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Text="1 USDT = 81.13 RUB"  VerticalAlignment="Center"/>
+                <TextBox TextChanged="BuyAmountTb_TextChanged"  Name="BuyAmountTb" Grid.Row="0" Text="12.32"  VerticalAlignment="Center"/>
+                <TextBlock Name="BuyRatioTbl" Grid.Row="1" Text="1 USDT = 81.13 RUB"  VerticalAlignment="Center"/>
             </Grid>
         </Border>
         <!--endregion-->
 
         <!--region ComboBox-->
-        <ComboBox Grid.Row="2" Grid.Column="0"/>
-        <ComboBox Grid.Row="2" Grid.Column="2"/>
+        <ComboBox DisplayMemberPath="Name" SelectionChanged="SellValuteCmb_SelectionChanged" Name="SellValuteCmb" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox DisplayMemberPath="Name" SelectionChanged="BuyValuteCbm_SelectionChanged" Name="BuyValuteCbm" Grid.Row="2" Grid.Column="2"/>
         <!--endregion-->
 
         <!--region Button-->
-        <Button Background="{x:Null}" Grid.Column="1" Grid.Row="4" >
+        <Button Click="Button_Click"  Background="{x:Null}" Grid.Column="1" Grid.Row="4" >
             <Image Source="/Resources/Icons/exchange.png" />
         </Button>
         <!--endregion-->
